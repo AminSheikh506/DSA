@@ -93,21 +93,37 @@ vector <int> MooreMajorityEl(vector <int> array){
 vector <int> ProOfArray (vector <int> &nums1){
     int n = nums1.size();
     vector <int> ansP(n,1);
-    for (int i = 0; i < n;i++){
-        int prod = 1;
-        for (int j = 0; j < n; j++)
-        {
-           if (i != j)
-           {
-            prod *= nums1[j];
-           }
+    //brute force
+    // for (int i = 0; i < n;i++){
+    //     int prod = 1;
+    //     for (int j = 0; j < n; j++)
+    //     {
+    //        if (i != j)
+    //        {
+    //         prod *= nums1[j];
+    //        }
    
            
-        }
-                ansP [i] = prod;
-    }
+    //     }
+    //             ansP [i] = prod;
+    // }
    
+    // return ansP;
+
+    //optimal
+    //prefix 
+    for(int i = 1;i < n; i++){
+        ansP[i] = ansP[i-1] * nums1[i-1];
+    }
+    //suffix
+    int suffix = 1; //initializer
+    for (int j = n-2; j >= 0 ; j--)
+    {
+        suffix *= nums1[j+1];
+        ansP[j] *= suffix;
+    }
     return ansP;
+    
 }
 
 int main(){
