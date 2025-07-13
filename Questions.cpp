@@ -89,6 +89,26 @@ vector <int> MooreMajorityEl(vector <int> array){
     }
     return {ans};
 }
+//Product of Array except self 
+vector <int> ProOfArray (vector <int> &nums1){
+    int n = nums1.size();
+    vector <int> ansP(n,1);
+    for (int i = 0; i < n;i++){
+        int prod = 1;
+        for (int j = 0; j < n; j++)
+        {
+           if (i != j)
+           {
+            prod *= nums1[j];
+           }
+   
+           
+        }
+                ansP [i] = prod;
+    }
+   
+    return ansP;
+}
 
 int main(){
     vector <int> nums = {2,7,11,15};
@@ -104,5 +124,11 @@ int main(){
     cout << "The majority element is : " << ans2[0 ] << endl; 
     cout << "The majority element is : " << ans3[0 ] << endl; 
     cout << "The majority element is : " << ans4[0 ] << endl; 
+
+    vector <int> nums1 = {1,2,3,4};
+    vector <int> ansP = ProOfArray(nums1);
+    for(int val: ansP){
+        cout << val << " ";
+    }
     return 0;
 }
